@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Search</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Plotly.js (for plotting graphs) -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5 mb-5">
+        <h1 class="mb-4">Stock Search</h1>
+        <!-- Search form -->
+        <%- include("partials/search_form.ejs") %>
+
+        <!-- Panel to display stock information and graph -->
+        <div class="card" id="stockInfoPanel mb-5">
+            <div class="card-body">
+                 <h4>Search results: <%=data.length%> found</h4>
+                <div class="container mt-4" id="stockList">
+                   
+                 
+                        <% for (let i = 0; i < data.length; i++) { %>
+                            
+                    <form id="cardForm<%= i%>" action="/" method="post">
+                        <input type="text" name="symbol" value="<%= data[i].symbol %>" hidden />
+                            <div class="card mb-3 container row" id="<%=i%>">
+                                <div class="card-body row">
+                                    <div class="col-6">
+                                        <h5 class="card-title"><%= data[i].name %></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">SYM: <%= data[i].symbol %></h6>
+                                    </div>
+                                    <p class="card-text col-6">Currency: <%= data[i].currency %></p>
+                                </div>
+                            </div>
+                        </form>
+                        <% } %>
+               
+                </div>
+    </div>
+</div>
+    </div>
+<script>
+
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(card => {
+       card.addEventListener("click",()=>{
+        submitForm(card.id)
+       })
+});
+
+function submitForm(card_id){
+    let form=document.getElementById(`cardForm${card_id}`)
+    form.submit()
+}
+</script>  
+
+</body>
+</html>
