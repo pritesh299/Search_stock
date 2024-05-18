@@ -8,6 +8,25 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Plotly.js (for plotting graphs) -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        a {
+	        color: #0254EB
+        }
+        a:visited {
+          	color: #0254EB
+        }
+        a.morelink {
+	        text-decoration:none;
+         	outline: none;
+        }
+        .morecontent span {
+	        display: none;
+        }
+        .comment {
+	       width: 400px;
+	       margin: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5 mb-5">
@@ -15,71 +34,9 @@
         <!-- Search form -->
        <%- include("partials/search_form.ejs") %>
        <% if(locals.data){%>
+        <%  %>
         <!-- Panel to display stock information and graph -->
-        <div class="card" id="stockInfoPanel mb-5">
-            <div class="card-body">
-                <div class="container mt-5 mb-5">
-                 <h1><img style="height:50px;" src="<%=data.image%>" alt="Company Logo"> <%="   "+ data.symbol+" (" + data.companyName +")" %></h1>
-       
-                 <table class="table mt-4">
-                <tbody>
-                    <tr>
-                        <th>Price (USD)</th>
-                        <td>$<%=data.price %></td>
-                    </tr>
-                    <tr>
-                        <th>Symbol</th>
-                        <td><%=data.symbol %></td>
-                    </tr>
-                    <tr>
-                        <th>Company Name</th>
-                        <td><%=data.companyName %></td>
-                    </tr>
-                 
-                    <tr>
-                        <th>Market Cap</th>
-                        <% let USDollar= new Intl.NumberFormat("en-US",{ style: 'currency',currency: 'USD'}); %>
-                        <td><%=USDollar.format(data.mktCap) %></td>
-                    </tr>
-                    <tr>
-                        <th>Last Dividend</th>
-                        <td><%=USDollar.format(data.lastDiv) %></td>
-                    </tr>
-                    <tr>
-                        <th>Range</th>
-                        <td><%= data.range  %></td>
-                    </tr>
-                    <tr>
-                        <th>Exchange</th>
-                        <td><%= data.exchange  %></td>
-                    </tr>
-                    <tr>
-                        <th>Industry</th>
-                        <td><%= data.industry  %></td>
-                    </tr>
-                    <tr>
-                        <th>Sector</th>
-                        <td><%= data.sector  %></td>
-                    </tr>
-                    <tr>
-                        <th>Website</th>
-                        <td><a href="<%=data.website %>">
-                            <%=data.companyName %></a></td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td><%= data.description  %></td>
-                    </tr>
-                
-                    <tr>
-                        <th>IPO Date</th>
-                        <td><%= data.ipoDate  %></td>
-                    </tr>
-                </tbody>
-                 </table>
-                </div>
-           </div>
-        </div>
+        <%- include("partials/stock.ejs") %>
         <%} else if(locals.error){%>
             
             <div class="card border-danger">
@@ -89,11 +46,99 @@
                 </div>
             </div>
             
-            
-
             <%}%> 
     </div>
+  
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var showChar = 100;
+    var ellipsestext = "...";
+    var moretext = "more";
+    var lesstext = "less";
 
+    var moreElements = document.querySelectorAll('.more');
+
+   moreElements.forEach(function (element) {
+        var content = element.innerHTML;
+
+        if (content.length > showChar) {
+            var visiblePart = content.substr(0, showChar);
+            var hiddenPart = content.substr(showChar , content.length - showChar);
+
+            var html = visiblePart + 
+                       '<span class="moreellipses">' + ellipsestext + '&nbsp;</span>' + 
+                       '<span class="morecontent"><span>' + hiddenPart + '</span>&nbsp;&nbsp;' + 
+                       '<a href="" class="morelink">' + moretext + '</a></span>';
+
+            element.innerHTML = html;
+        }
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target && event.target.classList.contains('morelink')) {
+            event.preventDefault();
+
+            var morelink = event.target;
+            if (morelink.classList.contains('less')) {
+                morelink.classList.remove('less');
+                morelink.innerHTML = moretext;
+            } else {
+                morelink.classList.add('less');
+                morelink.innerHTML = lesstext;
+            }
     
+            morelink.parentNode.previousSibling.style.display = morelink.classList.contains('less') ? 'none' : 'inline';
+            morelink.previousSibling.previousSibling.style.display = morelink.classList.contains('less') ? 'inline' : 'none';
+        }
+    });
+});
+
+function searchStock() {
+            const stockSymbol = document.getElementById('stockInput').value.trim().toUpperCase();
+            
+            // Fetch stock data (You can use a real API to get stock information)
+            // For demonstration purpose, using mock data
+            
+            console.log(stockHistory[0].date)
+
+            const mockStockData = {
+                name: 'Apple Inc.',
+                price: '$235.75',
+                timeline: {
+                    dates: ['2024-05-01', '2024-05-02', '2024-05-03', '2024-05-04', '2024-05-05'],
+                    prices: [235.5, 237.3, 234.8, 236.2, 238.1]
+                }
+            };
+         
+       
+            // Display stock graph using Plotly.js
+            const dates = mockStockData.timeline.dates;
+            const prices = mockStockData.timeline.prices;
+
+            const trace = {
+                x: dates,
+                y: prices,
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: { color: 'blue' },
+                name: 'Stock Price'
+            };
+
+            const layout = {
+                title: 'Stock Price Timeline',
+                xaxis: { title: 'Date' },
+                yaxis: { title: 'Price ($)' }
+            };
+
+            const config = { responsive: true };
+
+            Plotly.newPlot('stockGraph',[trace], layout, config);
+
+            // Show the stock info panel
+            document.getElementById('stockInfoPanel').style.display = 'block';
+        }
+
+        searchStock()
+ </script>
 </body>
 </html>

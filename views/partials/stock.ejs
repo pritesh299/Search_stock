@@ -1,0 +1,65 @@
+<div class="card" id="stockInfoPanel mb-5">
+    <div class="card-body">
+        <div class="container mt-5 mb-5">
+         <h1><img style="height:50px;" src="<%=data.image%>" alt="Company Logo"> <%="   "+ data.symbol+" (" + data.companyName +")" %></h1>
+         <div id="stockGraph"></div>
+        
+         <table class="table mt-4">
+        <tbody>
+            <tr>
+                <th>Price (USD)</th>
+                <td>$<%=data.price %></td>
+            </tr>
+            <tr>
+                <th>Symbol</th>
+                <td><%=data.symbol %></td>
+            </tr>
+            <tr>
+                <th>Company Name</th>
+                <td><%=data.companyName %></td>
+            </tr>
+         
+            <tr>
+                <th>Market Cap</th>
+                <% let USDollar= new Intl.NumberFormat("en-US",{ style: 'currency',currency: 'USD'}); %>
+                <td>$ <%=data.mktCap%></td>
+            </tr>
+            <tr>
+                <th>Last Dividend</th>
+                <td><%=USDollar.format(data.lastDiv) %></td>
+            </tr>
+            <tr>
+                <th>Range</th>
+                <td><%= data.range  %></td>
+            </tr>
+            <tr>
+                <th>Exchange</th>
+                <td><%= data.exchange  %></td>
+            </tr>
+            <tr>
+                <th>Industry</th>
+                <td><%= data.industry  %></td>
+            </tr>
+            <tr>
+                <th>Sector</th>
+                <td><%= data.sector  %></td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td><a href="<%=data.website %>">
+                    <%=data.companyName %></a></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td class="comment more"><%= data.description  %></td>
+            </tr>
+        
+            <tr>
+                <th>IPO Date</th>
+                <td><%= data.ipoDate  %></td>
+            </tr>
+        </tbody>
+         </table>
+        </div>
+   </div>
+</div>
