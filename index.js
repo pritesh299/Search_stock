@@ -3,8 +3,8 @@ import axios from "axios";
 import bodyParser from "body-parser"
 const app= express()
 const port=3000
-const apiKey="3fmloKIMUdx66dS8gXpcZOtZtgHw2SrX"
-const alphaVantageApiKey="Q8WVU5VO05ASCY41"
+const apiKey="YOUR_API_KEY"
+
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static("public"))
