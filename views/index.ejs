@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Search</title>
-    <!-- Bootstrap CSS -->
+    <link rel="shortcut icon" type="image/x-icon" href="file.png" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Plotly.js (for plotting graphs) -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -30,10 +30,17 @@
 </head>
 <body>
     <div class="container mt-5 mb-5">
-        <img src="partials/file.png"> 
-        <%- include("partials/file.png") %>
-        <h1 class="mb-4">Stock Search</h1>
-      
+     
+        <div class="container mt-5">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <img src="file.png" class="img-fluid" alt="Logo">
+                </div>
+                <div class="col">
+                    <h1 class="mb-4">Stock Search</h1>
+                </div>
+            </div>
+        </div>
       
        <%- include("partials/search_form.ejs") %>
        <% if(locals.data){%>
