@@ -38,7 +38,7 @@ This application is designed to showcase the usage of APIs for retrieving financ
 1. Start the server:
 
    ```bash
-  node index.js
+   node index.js
    ```
 
 2. Open your browser and navigate to `http://localhost:3000`.
