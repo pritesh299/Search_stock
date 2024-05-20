@@ -1,4 +1,4 @@
-![image](https://github.com/pritesh299/Search_stock/assets/129420569/72b37082-7c62-43be-b490-e94a2f70835d)
+
 # Full Stack API Showcase
 
 This application is designed to showcase the usage of APIs for retrieving financial data of publicly traded companies. It utilizes the [Express](https://expressjs.com/) framework for the backend and [Axios](https://github.com/axios/axios) for making HTTP requests to external APIs.
