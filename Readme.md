@@ -3,6 +3,22 @@
 
 This application is designed to showcase the usage of APIs for retrieving financial data of publicly traded companies. It utilizes the [Express](https://expressjs.com/) framework for the backend and [Axios](https://github.com/axios/axios) for making HTTP requests to external APIs.
 
+
+## Gallery
+
+### 1. Home Page
+
+![Home Page](https://github.com/pritesh299/Search_stock/assets/129420569/02c4cdd5-481a-45fa-b721-f0524594b0ff)
+
+### 2. Search
+
+![Search](https://github.com/pritesh299/Search_stock/assets/129420569/58005775-cffb-4ec8-a87b-5d09dd290e19)
+
+### 3. Company Info
+
+![Company Info](https://github.com/pritesh299/Search_stock/assets/129420569/e7c6a844-8f06-44ec-9c97-3c5b2198818e)
+
+
 ## Features
 
 - **Search**: Allows users to search for companies by name or symbol.
@@ -63,14 +79,9 @@ This application utilizes the following APIs:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
--------
--Gallery 
--1.home page
-![image](https://github.com/pritesh299/Search_stock/assets/129420569/02c4cdd5-481a-45fa-b721-f0524594b0ff)
--2.search
-![image](https://github.com/pritesh299/Search_stock/assets/129420569/58005775-cffb-4ec8-a87b-5d09dd290e19)
--3.Company Info
-![image](https://github.com/pritesh299/Search_stock/assets/129420569/e7c6a844-8f06-44ec-9c97-3c5b2198818e)
+
+
+
 
 
 
