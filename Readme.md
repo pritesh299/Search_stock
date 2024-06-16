@@ -1,5 +1,5 @@
 
-# Full Stack API Showcase
+# Seach Stock: A Full Stack API Showcase
 
 This application is designed to showcase the usage of APIs for retrieving financial data of publicly traded companies. It utilizes the [Express](https://expressjs.com/) framework for the backend and [Axios](https://github.com/axios/axios) for making HTTP requests to external APIs.
 
